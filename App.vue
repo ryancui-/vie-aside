@@ -2,8 +2,16 @@
     <div>
 
     <nav>
-
+        <div class="logo" :class="collapsed ? 'slim-menu' : 'wide-menu'"></div>
+        <div class="header">
+            <span @click="toggle"><i class="el-icon-message"></i></span>
+            <div class="header-empty"></div>
+            <button>Messages</button>
+            <button>Others</button>
+            <div class="avator">我的资料</div>
+        </div>
     </nav>
+
     <div class="main">
         <div class="aside" :class="collapsed ? 'slim-menu' : 'wide-menu'">
             <el-menu class="menu wide-menu" v-show="!collapsed" theme="dark" :default-active="defaultActive" mode="vertical">
@@ -39,20 +47,18 @@
                 <el-menu-item index="3">123</el-menu-item>
             </el-menu>
 
-            <el-menu class="menu slim-menu" v-show="collapsed" theme="dark" :default-active="defaultActive" mode="vertical">
+            <el-menu @mouseenter.native="toggle" class="menu slim-menu" v-show="collapsed" theme="dark" :default-active="defaultActive" mode="vertical">
                 <el-menu-item index="1"><i class="el-icon-message"></i></el-menu-item>
                 <el-menu-item index="2"><i class="el-icon-message"></i></el-menu-item>
                 <el-menu-item index="3"><i class="el-icon-message"></i></el-menu-item>
                 <el-menu-item index="4"><i class="el-icon-message"></i></el-menu-item>
             </el-menu>
+        </div>
 
-        </div>
-        <div class="main-content">
-            <button @click="toggle">111</button>
-        </div>
+        <div class="main-content"></div>
     </div>
 
-        </div>
+    </div>
 </template>
 
 <script>
@@ -75,15 +81,47 @@
 <style scoped>
     nav {
         position: absolute;
-        height: 60px;
+        height: 40px;
         width: 100%;
-        background-color: pink;
+        background-color: cornsilk;
+        display: flex;
+    }
+
+    .logo {
+        transition-property: flex-basis;
+        transition-duration: 0.3s;
+        transition-timing-function: ease;
+    }
+
+    .header {
+        flex-grow: 1;
+        display: flex;
+    }
+
+    .header > span, .header > button {
+        flex: 0 0 50px;
+    }
+
+    .header > span > i {
+        vertical-align: middle;
+    }
+
+    .header > span:hover {
+        background-color: red;
+    }
+
+    .header-empty {
+        flex-grow: 1;
+    }
+
+    .avator {
+        flex: 0 0 200px;
     }
 
     .main {
         position: absolute;
         width: 100%;
-        top: 60px;
+        top: 40px;
         bottom: 0px;
         display: flex;
     }
