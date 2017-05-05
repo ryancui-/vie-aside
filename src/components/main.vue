@@ -45,7 +45,6 @@
         },
         methods: {
             toggle () {
-                console.log('toggle')
                 this.collapsed = !this.collapsed
             }
         }
@@ -121,6 +120,6 @@
 
     .main-content {
         flex-grow: 1;
-        background-color: green;
+        /*background-color: green;*/
     }
 </style>
