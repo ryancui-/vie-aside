@@ -6,9 +6,15 @@
         <div class="header">
             <span @click="toggle"><i class="el-icon-message"></i></span>
             <div class="header-empty"></div>
-            <button>Messages</button>
-            <button>Others</button>
-            <div class="avator">我的资料</div>
+            <div class="avator" @mouseenter="showDropdown">
+                欢迎你, {{$store.state.user.name}}
+            </div>
+            <div class="dropdown-menu" v-show="dropdown" @mouseleave="hideDropdown">
+                <ul>
+                    <li>123</li>
+                    <li>345</li>
+                </ul>
+            </div>
         </div>
     </nav>
 
@@ -25,7 +31,7 @@
             <el-menu class="menu slim-menu" v-show="collapsed" theme="dark" :default-active="defaultActive" mode="vertical">
                 <el-menu-item index="1"><i class="el-icon-setting"></i></el-menu-item>
             </el-menu>
-        </div>`
+        </div>
 
         <div class="main-content">
             <router-view></router-view>
@@ -40,12 +46,19 @@
         data () {
             return {
                 defaultActive: '1',
-                collapsed: false
+                collapsed: false,
+                dropdown: false
             }
         },
         methods: {
             toggle () {
                 this.collapsed = !this.collapsed
+            },
+            showDropdown () {
+                this.dropdown = true
+            },
+            hideDropdown () {
+                this.dropdown = false
             }
         }
     }
@@ -66,13 +79,20 @@
         transition-timing-function: ease;
     }
 
+    .dropdown-menu {
+        position: absolute;
+        top: 40px;
+        right: 0;
+        width: 200px;
+    }
+
     .header {
         flex-grow: 1;
         display: flex;
     }
 
-    .header > span, .header > button {
-        flex: 0 0 50px;
+    .header > span {
+        flex: 0 0 40px;
     }
 
     .header > span > i {
@@ -81,6 +101,7 @@
 
     .header > span:hover {
         background-color: red;
+        cursor: hand;
     }
 
     .header-empty {
@@ -115,7 +136,7 @@
     }
 
     .slim-menu {
-        flex:0 0 60px;
+        flex:0 0 56px;
     }
 
     .main-content {

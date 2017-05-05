@@ -2,11 +2,14 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-    entry: './src/main.js',
+    entry: {
+      app: './src/main.js'
+    },
     output: {
-        path: path.resolve(__dirname, './dist'),
-        publicPath: '/dist/',
-        filename: 'build.js'
+      path: path.resolve(__dirname, './dist'),
+      publicPath: '/dist/',
+      filename: '[name].js',
+      chunkFilename: '[name].chunk.js'
     },
     module: {
         loaders: [
@@ -40,6 +43,22 @@ module.exports = {
         historyApiFallback: true,
         noInfo: true
     },
+    plugins: [
+      new webpack.optimize.CommonsChunkPlugin({
+        name: 'vendor',
+        minChunks: ({ resource }) => (
+          resource &&
+          resource.indexOf('node_modules') >= 0 &&
+          resource.match(/\.js$/)
+        ),
+      }),
+      new webpack.optimize.CommonsChunkPlugin({
+        async: 'used-twice',
+        minChunks: (module, count) => (
+          count >= 2
+        ),
+      })
+    ],
     devtool: '#eval-source-map'
 }
 

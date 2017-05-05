@@ -34,7 +34,9 @@
                     name: '王晓明'
                 })
 
-                // TODO 保存id到cookies或localStorage
+                if (window.localStorage) {
+                    localStorage.setItem('userid', this.user.id)
+                }
 
                 this.$router.push('/')
             }

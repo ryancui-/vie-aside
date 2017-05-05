@@ -8,8 +8,6 @@ export default {
   mutations: {
     setUser (state, payload) {
       state.user = payload
-
-      // TODO 设置cookies或localStorage
     },
     removeUser (state) {
       state.user = null
