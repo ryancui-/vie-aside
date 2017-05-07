@@ -1,8 +1,6 @@
 /**
  * Created by kit-mac on 2017/5/5.
  */
-
-
 const PageMain = () => import(
   /* webpackChunkName: "PageMain" */
   '../components/main.vue')

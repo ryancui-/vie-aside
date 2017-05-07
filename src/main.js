@@ -2,34 +2,15 @@
  * Created by kit-mac on 2017/5/4.
  */
 import Vue from 'vue'
-// import ElementUI from 'element-ui'
-// import 'element-ui/lib/theme-default/index.css'
 import App from './components/app.vue'
 import VueRouter from 'vue-router'
 import Vuex from 'vuex'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-default/index.css'
 
-// ElementUI components
-import {
-  Button,
-  Menu,
-  Submenu,
-  MenuItem,
-  MenuItemGroup,
-  Input,
-  Form,
-  FormItem,
-} from 'element-ui'
+import './ext-lib/font-awesome-4.7.0/css/font-awesome.min.css'
 
-Vue.use(Button)
-Vue.use(Menu)
-Vue.use(Submenu)
-Vue.use(MenuItem)
-Vue.use(MenuItemGroup)
-Vue.use(Input)
-Vue.use(Form)
-Vue.use(FormItem)
-
-// Vue.use(ElementUI)
+Vue.use(ElementUI)
 Vue.use(VueRouter)
 Vue.use(Vuex)
 
@@ -38,7 +19,6 @@ import routes from './router/router'
 const router = new VueRouter({
   routes
 })
-
 
 // Add vuex store
 import storeConfig from './vuex/store'
