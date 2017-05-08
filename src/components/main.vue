@@ -3,18 +3,29 @@
     <nav>
       <div class="logo" :class="collapsed ? 'slim-menu' : 'wide-menu'"></div>
       <div class="header">
-        <span @click="toggle"><i class="el-icon-message"></i></span>
-        <div class="header-empty"></div>
-        <div class="avator" @mouseenter="showDropdown">
-          欢迎你, {{$store.state.user.name}}
+        <div class="header-btn" @click="toggle"><i class="el-icon-message"></i></div>
 
+        <div class="header-empty"></div>
+
+        <div class="header-btn">
+          <div>我的消息</div>
+          <div class="dropdown-menu" v-show="dropdown" @mouseleave="hideDropdown">
+            <ul>
+              <li>123</li>
+              <li>456</li>
+            </ul>
+          </div>
         </div>
-        <div class="dropdown-menu" v-show="dropdown" @mouseleave="hideDropdown">
-          <ul>
-            <li>123</li>
-            <li>345</li>
-          </ul>
+        <div class="header-btn" @mouseenter="showDropdown($event)">
+          <div>欢迎你, {{$store.state.user.name}}</div>
+          <div class="dropdown-menu" @mouseleave="hideDropdown">
+            <ul>
+              <li>123</li>
+              <li>345</li>
+            </ul>
+          </div>
         </div>
+
       </div>
     </nav>
 
@@ -83,7 +94,8 @@
         this.collapsed = !this.collapsed
       },
       showDropdown() {
-        this.dropdown = true
+//        this.dropdown = true
+
       },
       hideDropdown() {
         this.dropdown = false
@@ -95,9 +107,8 @@
 <style scoped>
   nav {
     position: absolute;
-    height: 40px;
+    height: 50px;
     width: 100%;
-    background-color: cornsilk;
     display: flex;
   }
 
@@ -105,45 +116,47 @@
     transition-property: flex-basis;
     transition-duration: 0.3s;
     transition-timing-function: ease;
+    background-color: #333744;
   }
 
   .dropdown-menu {
     position: absolute;
-    top: 40px;
+    top: 50px;
     right: 0;
     width: 200px;
+    background-color: blue;
   }
 
   .header {
     flex-grow: 1;
     display: flex;
+    background-color: #333744;
   }
 
-  .header > span {
-    flex: 0 0 40px;
+  .header-btn {
+    position: relative;
+    width: 100px;
+    color: white;
+    font-size: 16px;
   }
 
-  .header > span > i {
-    vertical-align: baseline;
+  .header-btn:hover {
+    background-color: #5e6579;
+    cursor: pointer;
   }
 
-  .header > span:hover {
-    background-color: red;
-    cursor: hand;
+  .header-btn > div:first-child {
+    line-height: 50px;
+    text-align: center;
   }
-
   .header-empty {
     flex-grow: 1;
-  }
-
-  .avator {
-    flex: 0 0 200px;
   }
 
   .main {
     position: absolute;
     width: 100%;
-    top: 40px;
+    top: 50px;
     bottom: 0px;
     display: flex;
   }
