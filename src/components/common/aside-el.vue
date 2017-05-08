@@ -1,7 +1,7 @@
 <template>
   <aside :class="collapsed ? 'slim-menu' : 'wide-menu'">
     <el-menu class="menu wide-menu" v-show="!collapsed" theme="dark" :default-active="defaultActive" mode="vertical"
-             :router="true">
+             :router="true" :unique-opened="true">
       <template v-for="(menu, index) in menuItem">
         <el-submenu v-if="menu.children" :index="menu.index">
           <template slot="title">
@@ -37,6 +37,8 @@
         required: true
       }
     },
+    methods: {
+    },
     data () {
       return {
         defaultActive: '1',
@@ -47,13 +49,17 @@
 
 <style scoped>
   aside {
+    /*position: relative;*/
     overflow: hidden;
+    /*background-color: pink;*/
+    /*height: 100%;*/
     transition-property: flex-basis;
     transition-duration: 0.3s;
     transition-timing-function: ease;
   }
 
   .menu {
+    position: relative;
     height: 100%;
     overflow: auto;
   }

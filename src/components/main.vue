@@ -3,30 +3,28 @@
     <nav>
       <div class="logo" :class="collapsed ? 'slim-menu' : 'wide-menu'"></div>
       <div class="header">
-        <div class="header-btn" @click="toggle">
-          <div><i class="el-icon-message"></i></div>
+        <div class="header-btn" style="width: 50px;" @click="toggle">
+          <div><i class="el-icon-more"></i></div>
         </div>
 
         <div class="header-empty"></div>
 
-        <div class="header-btn">
-          <div @mouseenter="showDropdown($event)"
-               @mouseleave="hideDropdown($event)">
+        <div class="header-btn" style="width: 120px;">
+          <div @mouseenter="showDropdown(0)" @mouseleave="hideDropdown(0)">
             我的消息
           </div>
-          <div @mouseleave="hideDropdown($event)" class="dropdown-menu dropdown-hide">
+          <div @mouseenter="showDropdown(0)" @mouseleave="hideDropdown(0)" class="dropdown-menu" v-show="dropdown[0]">
             <ul>
               <li>123</li>
               <li>456</li>
             </ul>
           </div>
         </div>
-        <div class="header-btn">
-          <div @mouseenter="showDropdown($event)"
-               @mouseleave="hideDropdown($event)">
+        <div class="header-btn" style="width: 230px;">
+          <div @mouseenter="showDropdown(1)">
             欢迎你, {{$store.state.user.name}}
           </div>
-          <div @mouseleave="hideDropdown($event)" class="dropdown-menu dropdown-hide" >
+          <div @mouseleave="hideDropdown(1)" class="dropdown-menu" v-show="dropdown[1]">
             <ul>
               <li>123</li>
               <li>345</li>
@@ -59,7 +57,7 @@
       return {
         defaultActive: '1',
         collapsed: false,
-        dropdown: false,
+        dropdown: [false, false],
         menuItems: [{
           index: '1',
           name: '系统设置',
@@ -173,19 +171,15 @@
       }
     },
     methods: {
-      toggle() {
+      toggle () {
         this.collapsed = !this.collapsed
       },
-      showDropdown(evt) {
-        let nodeObj = evt.target.nextSibling.nextSibling
-        let className = nodeObj.getAttribute('class')
-        nodeObj.setAttribute('class', className.replace('dropdown-hide', ''))
+      showDropdown (index) {
+        this.dropdown = [false, false]
+        this.$set(this.dropdown, index, true)
       },
-      hideDropdown(evt) {
-        console.log(evt.target)
-        let nodeObj = evt.target
-        let className = nodeObj.getAttribute('class')
-        nodeObj.setAttribute('class', className + 'dropdown-hide')
+      hideDropdown (index) {
+        this.$set(this.dropdown, index, false)
       }
     }
   }
@@ -227,7 +221,6 @@
 
   .header-btn {
     position: relative;
-    width: 100px;
     color: white;
     font-size: 16px;
   }
@@ -255,6 +248,7 @@
 
   .main-content {
     flex-grow: 1;
+    overflow: auto;
   }
 
   .wide-menu {
