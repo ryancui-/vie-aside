@@ -3,22 +3,30 @@
     <nav>
       <div class="logo" :class="collapsed ? 'slim-menu' : 'wide-menu'"></div>
       <div class="header">
-        <div class="header-btn" @click="toggle"><i class="el-icon-message"></i></div>
+        <div class="header-btn" @click="toggle">
+          <div><i class="el-icon-message"></i></div>
+        </div>
 
         <div class="header-empty"></div>
 
         <div class="header-btn">
-          <div>我的消息</div>
-          <div class="dropdown-menu" v-show="dropdown" @mouseleave="hideDropdown">
+          <div @mouseenter="showDropdown($event)"
+               @mouseleave="hideDropdown($event)">
+            我的消息
+          </div>
+          <div @mouseleave="hideDropdown($event)" class="dropdown-menu dropdown-hide">
             <ul>
               <li>123</li>
               <li>456</li>
             </ul>
           </div>
         </div>
-        <div class="header-btn" @mouseenter="showDropdown($event)">
-          <div>欢迎你, {{$store.state.user.name}}</div>
-          <div class="dropdown-menu" @mouseleave="hideDropdown">
+        <div class="header-btn">
+          <div @mouseenter="showDropdown($event)"
+               @mouseleave="hideDropdown($event)">
+            欢迎你, {{$store.state.user.name}}
+          </div>
+          <div @mouseleave="hideDropdown($event)" class="dropdown-menu dropdown-hide" >
             <ul>
               <li>123</li>
               <li>345</li>
@@ -30,22 +38,7 @@
     </nav>
 
     <div class="main">
-      <!--<div class="aside" :class="collapsed ? 'slim-menu' : 'wide-menu'">-->
-        <!--<el-menu class="menu wide-menu" v-show="!collapsed" theme="dark" :default-active="defaultActive" mode="vertical"-->
-                 <!--:router="true">-->
-          <!--<el-submenu index="1">-->
-            <!--<template slot="title"><i class="el-icon-setting"></i>系统管理</template>-->
-            <!--<el-menu-item index="/sys/user"><i class="el-icon-setting"></i>用户管理</el-menu-item>-->
-            <!--<el-menu-item index="/sys/privilege"><i class="el-icon-setting"></i>权限管理</el-menu-item>-->
-          <!--</el-submenu>-->
-        <!--</el-menu>-->
-
-        <!--<el-menu class="menu slim-menu" v-show="collapsed" theme="dark" :default-active="defaultActive" mode="vertical">-->
-          <!--<el-menu-item index="1"><i class="el-icon-setting"></i></el-menu-item>-->
-        <!--</el-menu>-->
-      <!--</div>-->
-
-      <my-aside :menu-item="menuItems"></my-aside>
+      <my-aside :menu-item="menuItems" :collapsed="collapsed"></my-aside>
 
       <div class="main-content">
         <router-view></router-view>
@@ -56,7 +49,7 @@
 </template>
 
 <script>
-  import Aside from './common/aside.vue'
+  import Aside from './common/aside-el.vue'
 
   export default {
     components: {
@@ -71,6 +64,80 @@
           index: '1',
           name: '系统设置',
           children: [{
+            icon: 'el-icon-setting',
+            index: '/sys/user',
+            name: '1-1',
+          }, {
+            icon: 'el-icon-setting',
+            index: '/sys/privilege',
+            name: '1-2'
+          }, {
+            index: '1-3',
+            name: '1-3'
+          },{
+            index: '1-1',
+            name: '1-1'
+          }, {
+            index: '1-2',
+            name: '1-2'
+          }, {
+            index: '1-3',
+            name: '1-3'
+          },{
+            index: '1-1',
+            name: '1-1'
+          }, {
+            index: '1-2',
+            name: '1-2'
+          }, {
+            index: '1-3',
+            name: '1-3'
+          },{
+            index: '1-1',
+            name: '1-1'
+          }, {
+            index: '1-2',
+            name: '1-2'
+          }, {
+            index: '1-3',
+            name: '1-3'
+          },{
+            index: '1-1',
+            name: '1-1'
+          }, {
+            index: '1-2',
+            name: '1-2'
+          }, {
+            index: '1-3',
+            name: '1-3'
+          },{
+            index: '1-1',
+            name: '1-1'
+          }, {
+            index: '1-2',
+            name: '1-2'
+          }, {
+            index: '1-3',
+            name: '1-3'
+          },{
+            index: '1-1',
+            name: '1-1'
+          }, {
+            index: '1-2',
+            name: '1-2'
+          }, {
+            index: '1-3',
+            name: '1-3'
+          },{
+            index: '1-1',
+            name: '1-1'
+          }, {
+            index: '1-2',
+            name: '1-2'
+          }, {
+            index: '1-3',
+            name: '1-3'
+          },{
             index: '1-1',
             name: '1-1'
           }, {
@@ -85,7 +152,23 @@
           name: '个人设置'
         }, {
           index: '3',
-          name: '权限设置'
+          name: '权限设置',
+          children: [{
+            index: '1-2',
+            name: '1-2'
+          }, {
+            index: '1-3',
+            name: '1-3'
+          },{
+            index: '1-1',
+            name: '1-1'
+          }, {
+            index: '1-2',
+            name: '1-2'
+          }, {
+            index: '1-3',
+            name: '1-3'
+          }]
         }]
       }
     },
@@ -93,12 +176,16 @@
       toggle() {
         this.collapsed = !this.collapsed
       },
-      showDropdown() {
-//        this.dropdown = true
-
+      showDropdown(evt) {
+        let nodeObj = evt.target.nextSibling.nextSibling
+        let className = nodeObj.getAttribute('class')
+        nodeObj.setAttribute('class', className.replace('dropdown-hide', ''))
       },
-      hideDropdown() {
-        this.dropdown = false
+      hideDropdown(evt) {
+        console.log(evt.target)
+        let nodeObj = evt.target
+        let className = nodeObj.getAttribute('class')
+        nodeObj.setAttribute('class', className + 'dropdown-hide')
       }
     }
   }
@@ -125,6 +212,11 @@
     right: 0;
     width: 200px;
     background-color: blue;
+    z-index: 99999;
+  }
+
+  .dropdown-hide {
+    visibility: hidden;
   }
 
   .header {
@@ -161,27 +253,15 @@
     display: flex;
   }
 
-  .aside {
-    overflow: hidden;
-    transition-property: flex-basis;
-    transition-duration: 0.3s;
-    transition-timing-function: ease;
-  }
-
-  .menu {
-    height: 100%;
-    overflow: auto;
+  .main-content {
+    flex-grow: 1;
   }
 
   .wide-menu {
-    flex: 0 0 260px;
+    flex: 0 0 180px;
   }
 
   .slim-menu {
     flex: 0 0 56px;
-  }
-
-  .main-content {
-    flex-grow: 1;
   }
 </style>
