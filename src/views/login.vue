@@ -16,6 +16,8 @@
 </template>
 
 <script>
+  import { mapMutations } from 'vuex'
+
   export default {
     data () {
       return {
@@ -26,10 +28,9 @@
       }
     },
     methods: {
+      ...mapMutations(['setUser']),
       onSubmit () {
-        // TODO 完成登录逻辑,保存用户信息,cookie,并转向main page
-
-        this.$store.commit('setUser', {
+        this.setUser({
           id: this.user.id,
           name: '王晓明'
         })

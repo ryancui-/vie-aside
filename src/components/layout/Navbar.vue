@@ -25,7 +25,7 @@
       <div class="header-btn" style="width: 120px;">
         <div @mouseenter="showDropdown(1)">
           <i class="fa fa-user"></i>
-          {{$store.state.user ? $store.state.user.name : ''}}
+          {{user ? user.id : ''}}
         </div>
         <div @mouseleave="hideDropdown(1)" class="dropdown-menu" v-show="dropdown[1]">
           <ul>
@@ -39,6 +39,8 @@
 </template>
 
 <script>
+  import { mapGetters, mapMutations } from 'vuex'
+
   export default {
     props: {
       collapsed: {
@@ -52,6 +54,7 @@
       }
     },
     methods: {
+      ...mapMutations(['removeUser']),
       toggle () {
         this.$emit('toggleMenu')
       },
@@ -63,7 +66,7 @@
         this.$set(this.dropdown, index, false)
       },
       logout () {
-        this.$store.commit('removeUser')
+        this.removeUser()
 
         // 清空 localStorage 的 user 信息
         if (window.localStorage) {
@@ -72,6 +75,9 @@
 
         this.$router.push('/login')
       }
+    },
+    computed: {
+      ...mapGetters(['user'])
     }
   }
 </script>

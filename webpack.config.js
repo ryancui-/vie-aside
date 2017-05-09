@@ -57,15 +57,6 @@ module.exports = {
         resource.indexOf('node_modules') >= 0 &&
         resource.match(/\.js$|\.css$/)
       ),
-    }),
-
-    // FIXME webpack 2.5.0 fix a bug in CommonsChunkPlugin in async mode, so this config doesn't work again
-    // FIXME later we'll look at this issue
-    new webpack.optimize.CommonsChunkPlugin({
-      async: 'async-common',
-      minChunks: (module, count) => (
-        count >= 2
-      ),
     })
   ],
   devtool: '#eval-source-map'
@@ -75,6 +66,16 @@ if (process.env.NODE_ENV === 'production') {
   module.exports.devtool = '#source-map'
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
+
+    // FIXME webpack 2.5.0 fix a bug in CommonsChunkPlugin in async mode, so this config doesn't work again
+    // FIXME later we'll look at this issue
+    new webpack.optimize.CommonsChunkPlugin({
+      async: 'async-common',
+      minChunks: (module, count) => (
+        count >= 2
+      ),
+    }),
+
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"production"'

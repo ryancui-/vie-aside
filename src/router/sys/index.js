@@ -4,9 +4,9 @@
 import lazyload from '../lazyloading'
 
 export default [{
-  path: 'sys/user',
+  path: '/sys/user',
   component: lazyload('sys-user')
 }, {
-  path: 'sys/privilege',
+  path: '/sys/privilege',
   component: lazyload('sys-privilege')
 }]
