@@ -29,17 +29,12 @@ router.beforeEach((to, from, next) => {
   // 检查用户登录状态,先检查是否存在用户信息,若无请求后端返回已登录用户信息
   if (!store.state.user && to.path !== '/login') {
 
-    let userid = ''
+    let token = ''
     if (window.localStorage) {
-      userid = localStorage.getItem('userid')
+      token = localStorage.getItem('userid')
     }
 
-    if (userid) {
-      // TODO 请求后端
-      store.commit('setUser', {
-        id: userid,
-        name: '王晓明'
-      })
+    if (token) {
       next()
     } else {
       next('/login')

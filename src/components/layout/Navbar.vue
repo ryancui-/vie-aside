@@ -25,11 +25,11 @@
       <div class="header-btn" style="width: 120px;">
         <div @mouseenter="showDropdown(1)">
           <i class="fa fa-user"></i>
-          {{$store.state.user.name}}
+          {{$store.state.user ? $store.state.user.name : ''}}
         </div>
         <div @mouseleave="hideDropdown(1)" class="dropdown-menu" v-show="dropdown[1]">
           <ul>
-            <li><i class="fa fa-sign-out"></i>退出</li>
+            <li @click="logout"><i class="fa fa-sign-out"></i>退出</li>
           </ul>
         </div>
       </div>
@@ -61,6 +61,16 @@
       },
       hideDropdown (index) {
         this.$set(this.dropdown, index, false)
+      },
+      logout () {
+        this.$store.commit('removeUser')
+
+        // 清空 localStorage 的 user 信息
+        if (window.localStorage) {
+          window.localStorage.removeItem('token')
+        }
+
+        this.$router.push('/login')
       }
     }
   }

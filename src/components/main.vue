@@ -5,7 +5,9 @@
     <div class="main">
       <sidebar :menu-item="menuItems" :collapsed="collapsed"></sidebar>
       <div class="main-content">
-        <router-view></router-view>
+        <transition>
+          <router-view></router-view>
+        </transition>
       </div>
     </div>
   </div>
@@ -19,6 +21,24 @@
     components: {
       Navbar,
       Sidebar
+    },
+    beforeMount () {
+      setTimeout(() => {
+        let stillLogin = true;
+        if (stillLogin) {
+          this.$store.commit('setUser', {
+            id: localStorage.token,
+            name: '王晓明'
+          })
+        } else {
+          this.$alert('请重新登录', '登录超时', {
+            confirmButtonText: '确定',
+            callback: action => {
+              this.$router.push('/login')
+            }
+          });
+        }
+      }, 3000)
     },
     data() {
       return {

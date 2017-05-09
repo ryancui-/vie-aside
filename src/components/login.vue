@@ -35,7 +35,7 @@
         })
 
         if (window.localStorage) {
-          localStorage.setItem('userid', this.user.id)
+          localStorage.setItem('token', this.user.id)
         }
 
         this.$router.push('/')
