@@ -7,6 +7,7 @@ import VueRouter from 'vue-router'
 import Vuex from 'vuex'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
+import 'font-awesome/css/font-awesome.min.css'
 
 // import './ext-lib/font-awesome-4.7.0/css/font-awesome.min.css'
 

@@ -5,21 +5,21 @@
       <template v-for="(menu, index) in menuItem">
         <el-submenu v-if="menu.children" :index="menu.index">
           <template slot="title">
-            {{menu.name}}
+            <i :class="['fa', menu.icon || 'fa-cog']"></i>{{menu.name}}
           </template>
           <el-menu-item v-for="submenu in menu.children" :index="submenu.index">
-            {{submenu.name}}
+            <i :class="['fa', menu.icon || 'fa-cog']"></i>{{submenu.name}}
           </el-menu-item>
         </el-submenu>
         <el-menu-item v-else :index="menu.index">
-          {{menu.name}}
+          <i :class="['fa', menu.icon || 'fa-cog']"></i>{{menu.name}}
         </el-menu-item>
       </template>
     </el-menu>
 
     <el-menu class="menu slim-menu" v-show="collapsed" theme="dark" :default-active="defaultActive" mode="vertical">
       <el-menu-item v-for="menu in menuItem" :index="menu.index">
-
+        <i :class="['fa', menu.icon || 'fa-cog']"></i>
       </el-menu-item>
     </el-menu>
   </aside>
@@ -49,10 +49,7 @@
 
 <style scoped>
   aside {
-    /*position: relative;*/
     overflow: hidden;
-    /*background-color: pink;*/
-    /*height: 100%;*/
     transition-property: flex-basis;
     transition-duration: 0.3s;
     transition-timing-function: ease;
@@ -62,6 +59,10 @@
     position: relative;
     height: 100%;
     overflow: auto;
+  }
+
+  i {
+    width: 20px;
   }
 
   .wide-menu {
