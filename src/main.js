@@ -2,14 +2,12 @@
  * Created by kit-mac on 2017/5/4.
  */
 import Vue from 'vue'
-import App from './components/app.vue'
+import App from './app.vue'
 import VueRouter from 'vue-router'
 import Vuex from 'vuex'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 import 'font-awesome/css/font-awesome.min.css'
-
-// import './ext-lib/font-awesome-4.7.0/css/font-awesome.min.css'
 
 Vue.use(ElementUI)
 Vue.use(VueRouter)
@@ -31,7 +29,7 @@ router.beforeEach((to, from, next) => {
 
     let token = ''
     if (window.localStorage) {
-      token = localStorage.getItem('userid')
+      token = localStorage.getItem('token')
     }
 
     if (token) {
@@ -39,9 +37,9 @@ router.beforeEach((to, from, next) => {
     } else {
       next('/login')
     }
+  } else {
+    next()
   }
-
-  next()
 })
 
 new Vue({
