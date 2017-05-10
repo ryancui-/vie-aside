@@ -4,9 +4,7 @@
     <div class="main">
       <sidebar :menu-item="menuItems" :collapsed="collapsed"></sidebar>
       <div class="main-content">
-        <transition>
-          <router-view></router-view>
-        </transition>
+        <router-view></router-view>
       </div>
     </div>
   </div>
@@ -46,7 +44,7 @@
               }
             });
           }
-        }, 3000)
+        }, 1000)
       } else {
         this.waitForResource = false
       }
@@ -57,7 +55,7 @@
         defaultActive: '1',
         collapsed: false,
         menuItems: [{
-          index: '1',
+          index: '/sys',
           name: '系统设置',
           icon: 'fa-cog',
           children: [{
@@ -120,6 +118,7 @@
 
   .main-content {
     flex-grow: 1;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 </style>

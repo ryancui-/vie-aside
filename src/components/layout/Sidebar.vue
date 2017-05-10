@@ -1,6 +1,6 @@
 <template>
   <aside :class="collapsed ? 'slim-menu' : 'wide-menu'">
-    <el-menu class="menu wide-menu" v-show="!collapsed" theme="dark" :default-active="defaultActive" mode="vertical"
+    <el-menu class="menu wide-menu" v-show="!collapsed" theme="dark" :default-active="this.$route.path" mode="vertical"
              :router="true" :unique-opened="true">
       <template v-for="(menu, index) in menuItem">
         <el-submenu v-if="menu.children" :index="menu.index">
@@ -17,7 +17,7 @@
       </template>
     </el-menu>
 
-    <el-menu class="menu slim-menu" v-show="collapsed" theme="dark" :default-active="defaultActive" mode="vertical">
+    <el-menu class="menu slim-menu" v-show="collapsed" theme="dark" mode="vertical">
       <el-menu-item v-for="menu in menuItem" :index="menu.index">
         <i :class="['fa', menu.icon || 'fa-cog']"></i>
       </el-menu-item>
@@ -35,13 +35,6 @@
       menuItem: {
         type: Array,
         required: true
-      }
-    },
-    methods: {
-    },
-    data () {
-      return {
-        defaultActive: '1',
       }
     }
   }
