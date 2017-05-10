@@ -1,6 +1,6 @@
 <template>
-  <el-row :gutter="25" style="height: 100%;display: flex">
-    <el-col :span="12">
+  <div class="top" style="height: 100%;display: flex; justify-content: space-around;align-items: center;overflow: hidden;">
+    <div style="height: 90%; display: flex;flex-direction: column;width: 45%;">
       <el-row>
         <el-button-group>
           <el-button type="success" icon="plus">新增</el-button>
@@ -8,19 +8,18 @@
           <el-button type="danger" icon="delete">删除</el-button>
         </el-button-group>
       </el-row>
-      <el-row style="overflow: auto;flex:0 0 100%">
+      <el-row style="flex: 1 1 0;overflow-y: auto;">
         <el-table
-          :data="userData"
-          style="width: 100%">
+          :data="userData">
           <el-table-column
             prop="id"
             label="ID"
-            width="180">
+            width="50">
           </el-table-column>
           <el-table-column
             prop="nickname"
             label="昵称"
-            width="180">
+            width="60">
           </el-table-column>
           <el-table-column
             prop="telephone"
@@ -28,23 +27,23 @@
           </el-table-column>
         </el-table>
       </el-row>
-    </el-col>
-    <el-col :span="12">
+    </div>
+    <div style="height: 90%;width: 45%;">
       <el-tree
         :data="privilegeData"
         show-checkbox
         node-key="id"
         :props="defaultProps">
       </el-tree>
-    </el-col>
-  </el-row>
+    </div>
+  </div>
 </template>
 
 <script>
   export default {
     data() {
       return {
-        userData: new Array(50).fill({
+        userData: new Array(40).fill({
           id: 1,
           nickname: 'admin',
           telephone: '13826511000'
@@ -92,3 +91,9 @@
     }
   }
 </script>
+
+<style scoped>
+  .top > div {
+    border: 2px solid black;
+  }
+</style>
