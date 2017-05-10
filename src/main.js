@@ -13,24 +13,9 @@ Vue.use(ElementUI)
 import router from './router'
 import store from './store'
 
-// router.beforeEach((to, from, next) => {
-//   // 检查用户登录状态,先检查是否存在用户信息,若无请求后端返回已登录用户信息
-//   // if (!store.state.user.user && to.path !== '/login') {
-//   //
-//   //   let token = ''
-//   //   if (window.localStorage) {
-//   //     token = localStorage.getItem('token')
-//   //   }
-//   //
-//   //   if (token) {
-//   //     next()
-//   //   } else {
-//   //     next('/login')
-//   //   }
-//   // } else {
-//   //   next()
-//   // }
-// })
+import axios from 'axios'
+// 后端 api 服务 baseURL
+axios.defaults.baseURL = '/api/'
 
 new Vue({
   store,

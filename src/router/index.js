@@ -9,10 +9,13 @@ import sys from './sys'
 
 Vue.use(VueRouter)
 
-export default new VueRouter({
+const router = new VueRouter({
   routes: [{
     path: '/login',
     component: require('../views/login.vue')
+  }, {
+    path: '/404',
+    component: require('../views/404.vue')
   }, {
     path: '/',
     component: require('../views/main.vue'),
@@ -20,6 +23,10 @@ export default new VueRouter({
     children: [
       ...sys
     ]
+  }, {
+    path: '*',
+    redirect: '/404'
   }]
 })
 
+export default router
