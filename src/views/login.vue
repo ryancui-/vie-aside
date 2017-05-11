@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Login Page</h1>
-    <el-form :label-position="right" label-width="80px" :model="user">
+    <el-form :label-position="'right'" label-width="80px" :model="user">
       <el-form-item label="帐号">
         <el-input v-model="user.id"></el-input>
       </el-form-item>

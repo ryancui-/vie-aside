@@ -3,22 +3,22 @@
     <el-menu class="menu wide-menu" v-show="!collapsed" theme="dark" :default-active="this.$route.path" mode="vertical"
              :router="true" :unique-opened="true">
       <template v-for="(menu, index) in menuItem">
-        <el-submenu v-if="menu.children" :index="menu.index">
+        <el-submenu v-if="menu.children" :index="menu.index" :key="menu.index">
           <template slot="title">
             <i :class="['fa', menu.icon || 'fa-cog']"></i>{{menu.name}}
           </template>
-          <el-menu-item v-for="submenu in menu.children" :index="submenu.index">
+          <el-menu-item v-for="submenu in menu.children" :index="submenu.index" :key="submenu.index">
             <i :class="['fa', menu.icon || 'fa-cog']"></i>{{submenu.name}}
           </el-menu-item>
         </el-submenu>
-        <el-menu-item v-else :index="menu.index">
+        <el-menu-item v-else :index="menu.index" :key="menu.index">
           <i :class="['fa', menu.icon || 'fa-cog']"></i>{{menu.name}}
         </el-menu-item>
       </template>
     </el-menu>
 
     <el-menu class="menu slim-menu" v-show="collapsed" theme="dark" mode="vertical">
-      <el-menu-item v-for="menu in menuItem" :index="menu.index">
+      <el-menu-item v-for="menu in menuItem" :index="menu.index" :key="menu.index">
         <i :class="['fa', menu.icon || 'fa-cog']"></i>
       </el-menu-item>
     </el-menu>

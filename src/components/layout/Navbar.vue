@@ -1,8 +1,8 @@
 <template>
   <nav>
     <div class="logo" :class="collapsed ? 'slim-menu' : 'wide-menu'">
-      <span v-show="!collapse">Vue Amdin</span>
-      <span v-show="collapse">Vue</span>
+      <span v-show="!collapsed">Vue Amdin</span>
+      <span v-show="collapsed">Vue</span>
     </div>
     <div class="header">
       <div class="header-btn" style="width: 50px;" @click="toggle">

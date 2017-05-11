@@ -8,28 +8,26 @@
           <el-button type="danger" icon="delete">删除</el-button>
         </el-button-group>
       </el-row>
-      <el-row style="flex: 1 1 0;overflow-y: auto;">
-        <el-table
-          :data="userData">
-          <el-table-column
-            prop="id"
-            label="ID"
-            width="50">
-          </el-table-column>
-          <el-table-column
-            prop="nickname"
-            label="昵称"
-            width="60">
-          </el-table-column>
-          <el-table-column
-            prop="telephone"
-            label="手机">
-          </el-table-column>
-        </el-table>
-      </el-row>
+      <el-table
+        :data="userData"  style="flex: auto;" :height="1">
+        <el-table-column
+          prop="id"
+          label="ID"
+          width="50">
+        </el-table-column>
+        <el-table-column
+          prop="nickname"
+          label="昵称"
+          width="60">
+        </el-table-column>
+        <el-table-column
+          prop="telephone"
+          label="手机">
+        </el-table-column>
+      </el-table>
     </div>
-    <div style="height: 90%;width: 45%;">
-      <el-tree
+    <div style="height: 90%;width: 45%;display: flex;overflow-y: auto;">
+      <el-tree style="flex: auto"
         :data="privilegeData"
         show-checkbox
         node-key="id"
@@ -55,6 +53,66 @@
             id: 4,
             label: '二级 1-1',
             children: [{
+              id: 9,
+              label: '三级 1-1-1'
+            }, {
+              id: 10,
+              label: '三级 1-1-2'
+            },{
+              id: 9,
+              label: '三级 1-1-1'
+            }, {
+              id: 10,
+              label: '三级 1-1-2'
+            },{
+              id: 9,
+              label: '三级 1-1-1'
+            }, {
+              id: 10,
+              label: '三级 1-1-2'
+            },{
+              id: 9,
+              label: '三级 1-1-1'
+            },{
+              id: 10,
+              label: '三级 1-1-2'
+            },{
+              id: 9,
+              label: '三级 1-1-1'
+            }, {
+              id: 10,
+              label: '三级 1-1-2'
+            },{
+              id: 9,
+              label: '三级 1-1-1'
+            }, {
+              id: 10,
+              label: '三级 1-1-2'
+            },{
+              id: 9,
+              label: '三级 1-1-1'
+            }, {
+              id: 10,
+              label: '三级 1-1-2'
+            },{
+              id: 9,
+              label: '三级 1-1-1'
+            }, {
+              id: 10,
+              label: '三级 1-1-2'
+            },{
+              id: 9,
+              label: '三级 1-1-1'
+            }, {
+              id: 10,
+              label: '三级 1-1-2'
+            }, {
+              id: 9,
+              label: '三级 1-1-1'
+            }, {
+              id: 10,
+              label: '三级 1-1-2'
+            },{
               id: 9,
               label: '三级 1-1-1'
             }, {

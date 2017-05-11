@@ -47,12 +47,13 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
-    noInfo: true,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:8081',
-        changeOrigin: true
-      }
+    noInfo: true
+  },
+  resolve: {
+    alias: {
+      api: path.resolve(__dirname, 'src/api'),
+      layout: path.resolve(__dirname, 'src/components/layout'),
+      views: path.resolve(__dirname, 'src/views')
     }
   },
   plugins: [
