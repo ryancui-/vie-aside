@@ -17,6 +17,7 @@
 
 <script>
   import { mapMutations } from 'vuex'
+  import Cookies from 'js-cookie'
 
   export default {
     data () {
@@ -34,11 +35,7 @@
           id: this.user.id,
           name: '王晓明'
         })
-
-        if (window.localStorage) {
-          localStorage.setItem('token', this.user.id)
-        }
-
+        Cookies.set('token', this.user.id)
         this.$router.push('/')
       }
     }

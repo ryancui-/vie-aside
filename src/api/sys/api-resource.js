@@ -31,10 +31,10 @@ export const countAvailable = roleId => {
   })
 }
 
-export const listNode = (id, menuOnly, enableOnly) => {
+export const listNode = (idw, menuOnly, enableOnly) => {
   return axios.get('auth/resource/listNode', {
     params: {
-      id, menuOnly, enableOnly
+      idw, menuOnly, enableOnly
     }
   })
 }

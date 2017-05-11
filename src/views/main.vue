@@ -16,6 +16,7 @@
   import Sidebar from '../components/layout/Sidebar.vue'
   import { listNode } from '../api/api'
   import axios from 'axios'
+  import Cookies from 'js-cookie'
 
   export default {
     components: {
@@ -24,15 +25,16 @@
     },
     mounted () {
       // 刷新后的必要资源加载
-      let token = localStorage.getItem('token')
+      let token = Cookies.get('token')
       if (!token) {
         this.waitForResource = false
         this.$router.push('/login')
       } else {
-        axios.all([this.refreshUser(), this.refreshMenu()])
-          .then(axios.spread((a, b) => {
+        Promise.all([this.refreshUser(), this.refreshMenu()])
+          .then((resp) => {
+            console.log(resp)
             this.waitForResource = false
-          }))
+          })
           .catch((error) => {
             this.waitForResource = false
             console.log(error)

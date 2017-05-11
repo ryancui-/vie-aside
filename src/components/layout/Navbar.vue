@@ -39,7 +39,8 @@
 </template>
 
 <script>
-  import { mapGetters, mapMutations } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
+  import Cookies from 'js-cookie'
 
   export default {
     props: {
@@ -54,7 +55,7 @@
       }
     },
     methods: {
-      ...mapMutations(['removeUser']),
+      ...mapActions(['removeUser']),
       toggle () {
         this.$emit('toggleMenu')
       },
@@ -67,12 +68,7 @@
       },
       logout () {
         this.removeUser()
-
-        // 清空 localStorage 的 user 信息
-        if (window.localStorage) {
-          window.localStorage.removeItem('token')
-        }
-
+        Cookie.remote('token')
         this.$router.push('/login')
       }
     },

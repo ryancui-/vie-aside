@@ -19,7 +19,7 @@ export default {
     }
   },
   actions: {
-    refreshUser({commit}) {
+    refreshUser ({commit}) {
       // TODO 改为后端请求得到的数据
       let user = {
         id: '123123',
@@ -30,6 +30,9 @@ export default {
         commit('setUser', user)
         resolve(user)
       })
+    },
+    removeUser ({commit}) {
+      commit('removeUser')
     }
   }
 }
