@@ -1,6 +1,6 @@
 <template>
   <div class="level-bar">
-    <el-breadcrumb separator="/" class="breadcrumb">
+    <el-breadcrumb separator="/" class="my-breadcrumb">
       <el-breadcrumb-item v-for="item in levelList" :key="item.path">
         {{item.name}}
       </el-breadcrumb-item>
@@ -25,7 +25,7 @@
     flex: 0 0 40px;
   }
 
-  .breadcrumb {
+  .my-breadcrumb {
     font-size: 14px;
     margin-left: 20px;
     line-height: 40px;

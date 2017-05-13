@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <div class="logo" :class="collapsed ? 'slim-menu' : 'wide-menu'">
+    <div class="logo" :style="logoStyle">
       <span v-show="!collapsed">Vue Amdin</span>
       <span v-show="collapsed">Vue</span>
     </div>
@@ -11,23 +11,26 @@
 
       <div class="header-empty"></div>
 
-      <div class="header-btn" style="width: 120px;">
+      <div class="header-btn" style="width: 80px;">
         <div @mouseenter="showDropdown(0)" @mouseleave="hideDropdown(0)">
-          我的消息
+          消息<el-tag style="margin-left: 5px;" type="danger">5</el-tag>
         </div>
-        <div @mouseenter="showDropdown(0)" @mouseleave="hideDropdown(0)" class="dropdown-menu" v-show="dropdown[0]">
+        <div @mouseenter="showDropdown(0)" @mouseleave="hideDropdown(0)"
+             class="my-dropdown-menu" v-show="dropdown[0]" style="width: 150px">
           <ul>
-            <li>123</li>
-            <li>456</li>
+            <li>我的消息 1</li>
+            <li>我的消息 2</li>
           </ul>
         </div>
       </div>
+
       <div class="header-btn" style="width: 120px;">
         <div @mouseenter="showDropdown(1)" @mouseleave="hideDropdown(1)">
           <i class="fa fa-user"></i>
           {{user ? user.name : ''}}
         </div>
-        <div @mouseenter="showDropdown(1)" @mouseleave="hideDropdown(1)" class="dropdown-menu" v-show="dropdown[1]">
+        <div @mouseenter="showDropdown(1)" @mouseleave="hideDropdown(1)"
+             class="my-dropdown-menu" v-show="dropdown[1]" style="width: 180px;">
           <ul>
             <li @click="onLogout"><i class="fa fa-sign-out"></i>退出</li>
           </ul>
@@ -47,11 +50,19 @@
       collapsed: {
         type: Boolean,
         required: true
+      },
+      logoWide: {
+        type: Number,
+        required: true
+      },
+      logoSlim: {
+        type: Number,
+        required: true
       }
     },
     data () {
       return {
-        dropdown: [false, false],
+        dropdown: [false, false]
       }
     },
     methods: {
@@ -76,7 +87,12 @@
     computed: {
       ...mapState({
         user: state => state.auth.user
-      })
+      }),
+      logoStyle () {
+        return {
+          'flex-basis': (this.collapsed ?  this.logoSlim : this.logoWide) + 'px'
+        }
+      }
     }
   }
 </script>
@@ -87,6 +103,7 @@
     height: 50px;
     width: 100%;
     display: flex;
+    background-color: #242424;
   }
 
   i {
@@ -97,7 +114,6 @@
     transition-property: flex-basis;
     transition-duration: 0.3s;
     transition-timing-function: ease;
-    background-color: #333744;
     text-align: center;
   }
 
@@ -107,36 +123,35 @@
     color: white;
   }
 
-  .dropdown-menu {
+  .my-dropdown-menu {
     position: absolute;
     top: 50px;
     right: 0;
-    width: 200px;
-    background-color: #333744;
+    background-color: #242424;
     z-index: 99999;
     color: white;
+    font-size: 16px;
   }
 
-  .dropdown-menu > ul {
+  .my-dropdown-menu > ul {
     margin: 0;
     padding: 0;
   }
 
-  .dropdown-menu > ul > li {
+  .my-dropdown-menu > ul > li {
     display: block;
     padding: 10px;
     height: 20px;
   }
 
-  .dropdown-menu > ul > li:hover {
+  .my-dropdown-menu > ul > li:hover {
     cursor: pointer;
-    background-color: #a0ab9f;
+    background-color: black;
   }
 
   .header {
     flex-grow: 1;
     display: flex;
-    background-color: #333744;
   }
 
   .header-btn {
@@ -146,7 +161,7 @@
   }
 
   .header-btn:hover {
-    background-color: #5e6579;
+    background-color: black;
     cursor: pointer;
   }
 
@@ -154,16 +169,8 @@
     line-height: 50px;
     text-align: center;
   }
+
   .header-empty {
     flex-grow: 1;
-  }
-
-  /** Must be consistent with Sidebar.vue */
-  .wide-menu {
-    flex: 0 0 180px;
-  }
-
-  .slim-menu {
-    flex: 0 0 56px;
   }
 </style>

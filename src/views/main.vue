@@ -1,6 +1,6 @@
 <template>
   <div>
-    <navbar :collapsed="collapsed" @toggleMenu="toggle"></navbar>
+    <navbar :collapsed="collapsed" :logo-wide="180" :logo-slim="56" @toggleMenu="toggle"></navbar>
     <div class="main">
       <sidebar :menu-item="menu" :collapsed="collapsed"></sidebar>
       <div class="main-content">
