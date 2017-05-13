@@ -21,10 +21,10 @@ mock.onGet('/auth/menu').reply(200, [
     index: '/demo',
     name: 'Demo',
     children: [{
-      index: '/demo1',
+      index: '/demo/demo1',
       name: 'demo1'
     }, {
-      index: '/demo2',
+      index: '/demo/demo2',
       name: 'demo2'
     }]
   }, {

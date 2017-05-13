@@ -4,6 +4,7 @@
     <div class="main">
       <sidebar :menu-item="menu" :collapsed="collapsed"></sidebar>
       <div class="main-content">
+        <levelbar></levelbar>
         <router-view></router-view>
       </div>
     </div>
@@ -14,11 +15,13 @@
   import { mapState } from 'vuex'
   import Navbar from 'layout/Navbar.vue'
   import Sidebar from 'layout/Sidebar.vue'
+  import Levelbar from 'layout/Levelbar.vue'
 
   export default {
     components: {
       Navbar,
-      Sidebar
+      Sidebar,
+      Levelbar
     },
     data() {
       return {
@@ -50,7 +53,8 @@
 
   .main-content {
     flex-grow: 1;
-    overflow-y: auto;
-    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
   }
 </style>

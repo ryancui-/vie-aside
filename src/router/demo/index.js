@@ -4,12 +4,15 @@
 import lazyloading from '../lazyloading'
 
 export default [{
-  path: '/demo1',
+  name: 'Demo 1',
+  path: 'demo/demo1',
   component: lazyloading('demo', 'demo1')
 }, {
-  path: '/demo2',
+  name: 'Demo 2',
+  path: 'demo/demo2',
   component: lazyloading('demo', 'demo2')
 }, {
-  path: '/demo3',
+  name: 'Demo 3',
+  path: 'demo/demo3',
   component: lazyloading('demo', 'demo3')
 }]

@@ -100,7 +100,11 @@ router.beforeEach((to, from, next) => {
   }
 })
 
-router.afterEach(() => {
+router.afterEach(route => {
+  // 更新面包屑
+  store.dispatch('updateLevelList', route)
+
+  // 进度条
   NProgress.done()
 })
 
