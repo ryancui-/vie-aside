@@ -16,6 +16,9 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 import Cookies from 'js-cookie'
+// import './style/index.css'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 
 // Mock service
 import './mock'
@@ -55,6 +58,8 @@ const hasPermission = url => {
 }
 
 router.beforeEach((to, from, next) => {
+  NProgress.start()
+
   // 1. 本地是否存有 token
   const token = Cookies.get('token')
   if (token) {  // 有 token
@@ -90,6 +95,10 @@ router.beforeEach((to, from, next) => {
       next('/login')
     }
   }
+})
+
+router.afterEach(() => {
+  NProgress.done()
 })
 
 const vm = new Vue({

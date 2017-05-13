@@ -23,11 +23,11 @@
         </div>
       </div>
       <div class="header-btn" style="width: 120px;">
-        <div @mouseenter="showDropdown(1)">
+        <div @mouseenter="showDropdown(1)" @mouseleave="hideDropdown(1)">
           <i class="fa fa-user"></i>
           {{user ? user.name : ''}}
         </div>
-        <div @mouseleave="hideDropdown(1)" class="dropdown-menu" v-show="dropdown[1]">
+        <div @mouseenter="showDropdown(1)" @mouseleave="hideDropdown(1)" class="dropdown-menu" v-show="dropdown[1]">
           <ul>
             <li @click="onLogout"><i class="fa fa-sign-out"></i>退出</li>
           </ul>
