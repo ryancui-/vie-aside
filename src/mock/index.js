@@ -26,36 +26,6 @@ mock.onGet('/auth/menu').reply(200, [
     }, {
       index: '/demo2',
       name: 'demo2'
-    }, {
-      index: '/demo1',
-      name: 'demo1'
-    }, {
-      index: '/demo2',
-      name: 'demo2'
-    }, {
-      index: '/demo1',
-      name: 'demo1'
-    }, {
-      index: '/demo2',
-      name: 'demo2'
-    }, {
-      index: '/demo1',
-      name: 'demo1'
-    }, {
-      index: '/demo2',
-      name: 'demo2'
-    }, {
-      index: '/demo1',
-      name: 'demo1'
-    }, {
-      index: '/demo2',
-      name: 'demo2'
-    }, {
-      index: '/demo1',
-      name: 'demo1'
-    }, {
-      index: '/demo2',
-      name: 'demo2'
     }]
   }, {
     index: '/aaa',

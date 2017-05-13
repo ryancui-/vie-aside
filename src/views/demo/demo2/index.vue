@@ -1,6 +1,6 @@
 <template>
   <div>
-    401 Page
+    Demo 2 page.
   </div>
 </template>
 

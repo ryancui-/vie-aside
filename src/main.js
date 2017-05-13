@@ -44,17 +44,20 @@ const matchInArray = (url, arr) => {
       break
     }
 
-    if (arr[i].children) {
-      matched = matchInArray(url, arr[i].children)
+    if (arr[i].children && matchInArray(url, arr[i].children)) {
+      matched = true
+      break
     }
   }
   return matched
 }
 
+// 只通过菜单的 url 来验证权限
 const hasPermission = url => {
   let has = false
   const menu = store.state.auth.menu
-  return url === '/' || matchInArray(url, menu)
+  return url === '/' || url === '/401' || url === '/404'
+    || matchInArray(url, menu)
 }
 
 router.beforeEach((to, from, next) => {
