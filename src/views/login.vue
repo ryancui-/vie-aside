@@ -1,12 +1,12 @@
 <template>
   <div>
     <h1>Login Page</h1>
-    <el-form :label-position="'right'" label-width="80px" :model="user">
+    <el-form label-position="right" label-width="80px" :model="user">
       <el-form-item label="帐号">
-        <el-input v-model="user.id"></el-input>
+        <el-input v-model="user.username"></el-input>
       </el-form-item>
       <el-form-item label="密码">
-        <el-input v-model="user.pw"></el-input>
+        <el-input v-model="user.password"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">登录</el-button>
@@ -16,27 +16,25 @@
 </template>
 
 <script>
-  import { mapMutations } from 'vuex'
+  import { mapActions } from 'vuex'
   import Cookies from 'js-cookie'
 
   export default {
     data () {
       return {
         user: {
-          id: '',
-          pw: ''
+          username: '',
+          password: ''
         }
       }
     },
     methods: {
-      ...mapMutations(['setUser']),
+      ...mapActions(['login']),
       onSubmit () {
-        this.setUser({
-          id: this.user.id,
-          name: '王晓明'
+        this.login(this.user).then(data => {
+          Cookies.set('token', data.token)
+          this.$router.push('/')
         })
-        Cookies.set('token', this.user.id)
-        this.$router.push('/')
       }
     }
   }

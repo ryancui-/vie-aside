@@ -4,24 +4,26 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import lazyload from './lazyloading'
-import sys from './sys'
+import demo from './demo'
 
 Vue.use(VueRouter)
 
 const router = new VueRouter({
   routes: [{
     path: '/login',
-    component: require('../views/login.vue')
+    component: require('views/login.vue')
   }, {
     path: '/404',
-    component: require('../views/404.vue')
+    component: require('views/404.vue')
+  }, {
+    path: '/401',
+    component: require('views/401.vue')
   }, {
     path: '/',
-    component: require('../views/main.vue'),
+    component: require('views/main.vue'),
     // 异步加载的路由页面
     children: [
-      ...sys
+      ...demo
     ]
   }, {
     path: '*',

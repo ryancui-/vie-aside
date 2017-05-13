@@ -4,14 +4,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import menu from './modules/store-menu'
-import user from './modules/store-user'
+import auth from './modules/store-auth'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
-    menu,
-    user
+    auth
   }
 })

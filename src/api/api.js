@@ -3,14 +3,20 @@
  */
 import axios from 'axios'
 
-export const getUser = () => {
-  return axios.get()
+export const login = (username, password) => {
+  return axios.post('/authenticate', {
+    username, password
+  })
 }
 
-export const listNode = (id, menuOnly, enableOnly) => {
-  return axios.get('/auth/resource/listNode', {
-    params: {
-      id, menuOnly, enableOnly
-    }
-  })
+export const logout = () => {
+  return axios.post('/logout')
+}
+
+export const getUser = () => {
+  return axios.get('/auth/user')
+}
+
+export const getMenu = () => {
+  return axios.get('/auth/menu')
 }
