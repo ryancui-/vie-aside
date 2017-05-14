@@ -103,11 +103,12 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach(route => {
-  // 更新面包屑
-  store.dispatch('updateLevelList', route)
-
+  // FIXME 401 重定向到无权限页面会复用 401 路由组件从而不会调用 done 方法结束进度条
   // 进度条
   NProgress.done()
+
+  // 更新面包屑
+  store.dispatch('updateLevelList', route)
 })
 
 const vm = new Vue({
