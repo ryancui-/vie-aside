@@ -20,6 +20,8 @@ import Cookies from 'js-cookie'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
+// import 'bootstrap/dist/css/bootstrap.min.css'
+
 // Mock service
 import './mock'
 

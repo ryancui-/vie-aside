@@ -1,17 +1,17 @@
 <template>
   <nav>
-    <div class="logo" :style="logoStyle">
+    <div class="navbar-logo" :style="logoStyle">
       <span v-show="!collapsed">Vue Amdin</span>
       <span v-show="collapsed">Vue</span>
     </div>
-    <div class="header">
-      <div class="header-btn" style="width: 50px;" @click="toggle">
+    <div class="navbar-panel">
+      <div class="navbar-btn" style="width: 50px;" @click="toggle">
         <div><i class="fa fa-bars"></i></div>
       </div>
 
-      <div class="header-empty"></div>
+      <div class="navbar-expand"></div>
 
-      <div class="header-btn" style="width: 80px;">
+      <div class="navbar-btn" style="width: 80px;">
         <div @mouseenter="showDropdown(0)" @mouseleave="hideDropdown(0)">
           消息<el-tag style="margin-left: 5px;" type="danger">5</el-tag>
         </div>
@@ -24,7 +24,7 @@
         </div>
       </div>
 
-      <div class="header-btn" style="width: 120px;">
+      <div class="navbar-btn" style="width: 120px;">
         <div @mouseenter="showDropdown(1)" @mouseleave="hideDropdown(1)">
           <i class="fa fa-user"></i>
           {{user ? user.name : ''}}
@@ -110,14 +110,14 @@
     width: 20px;
   }
 
-  .logo {
+  .navbar-logo {
     transition-property: flex-basis;
     transition-duration: 0.3s;
     transition-timing-function: ease;
     text-align: center;
   }
 
-  .logo > span {
+  .navbar-logo > span {
     font-size: 16px;
     line-height: 50px;
     color: white;
@@ -149,28 +149,28 @@
     background-color: black;
   }
 
-  .header {
+  .navbar-panel {
     flex-grow: 1;
     display: flex;
   }
 
-  .header-btn {
+  .navbar-btn {
     position: relative;
     color: white;
     font-size: 16px;
   }
 
-  .header-btn:hover {
+  .navbar-btn:hover {
     background-color: black;
     cursor: pointer;
   }
 
-  .header-btn > div:first-child {
+  .navbar-btn > div:first-child {
     line-height: 50px;
     text-align: center;
   }
 
-  .header-empty {
+  .navbar-expand {
     flex-grow: 1;
   }
 </style>

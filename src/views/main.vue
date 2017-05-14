@@ -5,7 +5,7 @@
       <sidebar :menu-item="menu" :collapsed="collapsed"></sidebar>
       <div class="main-content">
         <levelbar></levelbar>
-        <router-view></router-view>
+        <router-view class="content"></router-view>
       </div>
     </div>
   </div>
@@ -56,5 +56,11 @@
     display: flex;
     flex-direction: column;
     overflow: auto;
+  }
+
+  .content {
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 </style>
